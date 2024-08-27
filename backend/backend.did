@@ -1,0 +1,33 @@
+type Result_1 = 
+ variant {
+   err: text;
+   ok: nat;
+ };
+type Result = 
+ variant {
+   err: text;
+   ok;
+ };
+type FormData = 
+ record {
+   email: text;
+   message: opt text;
+   name: opt text;
+ };
+type Content = 
+ record {
+   heroHeadline: text;
+   heroImage: text;
+   mainContent: text;
+   sidebarContent: text;
+   title: text;
+ };
+service : {
+  getContent: () -> (Content) query;
+  getFormSubmissions: () -> (vec record {
+                                   nat;
+                                   FormData;
+                                 }) query;
+  submitForm: (FormData) -> (Result_1);
+  updateContent: (Content) -> (Result);
+}
